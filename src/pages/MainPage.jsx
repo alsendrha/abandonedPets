@@ -8,8 +8,8 @@ const MainPage = () => {
   const [cityDataCode, setCityDataCode] = useState(6110000);
   const [petData, setPetData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [petKind, setPetKind] = useState(417000);
-  const petKindCode = [{ 'name': '개', 'code': 417000 }, { 'name': '고양이', 'code': 422400 }, { 'name': '기타', 'code': 429900 }];
+  const [petKind, setPetKind] = useState('');
+  const petKindCode = [{ 'name': '전체', 'code': '' }, { 'name': '개', 'code': 417000 }, { 'name': '고양이', 'code': 422400 }, { 'name': '기타', 'code': 429900 }];
 
   const getCityData = async () => {
     const response = await axios.get('', {
@@ -24,14 +24,18 @@ const MainPage = () => {
     setIsLoading(true);
     //upkind: 개 : 417000, 고양이 : 422400, 기타 : 429900
     const currentDate = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const params = {
+      // bgnde: 20200101, // 시작일
+      // endde: currentDate, // 마지막일
+      numOfRows: 10,
+      // upkind: petKind, // 동물의 종류
+      upr_cd: cityDataCode // 시도코드
+    }
+    if (petKind) {
+      params.upkind = petKind;
+    }
     const response = await petAxios.get('', {
-      params: {
-        bgnde: 20200101, // 시작일
-        endde: currentDate, // 마지막일
-        numOfRows: 10,
-        upkind: petKind, // 동물의 종류
-        upr_cd: cityDataCode // 시도코드
-      }
+      params
     })
     setPetData(response.data.response.body.items.item);
     console.log(response.data.response.body.items.item);
