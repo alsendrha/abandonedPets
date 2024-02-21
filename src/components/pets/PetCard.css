@@ -1,0 +1,26 @@
+.pets_info_container {
+  margin: 10px 5px 10px 5px;
+  text-align: center;
+  border: 1px solid grey;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pets_info_container:hover {
+  transform: scale(1.05);
+}
+
+.pets_info_container p {
+  padding: 2px 10px 2px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pet_img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  object-position: 50% 0;
+  /* border-radius: 8px; */
+}
