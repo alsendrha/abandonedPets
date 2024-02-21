@@ -1,0 +1,29 @@
+.image_container {
+  display: flex;
+  justify-content: center;
+}
+
+.detail_image_form {
+  margin: 10px;
+  width: 150px;
+  height: 60px;
+  border: 1px solid gray;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pet_detail_image_icon {
+  width: 40px;
+}
+
+.pet_detail_image_icon_cet {
+  width: 80px;
+}
+
+@media screen and (max-width: 1140px) {
+  .detail_image_form {
+      width: 100px;
+    }
+}

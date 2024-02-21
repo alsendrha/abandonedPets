@@ -1,18 +1,12 @@
 import axios from "../../api/CityApi";
 import petAxios from "../../api/PetApi";
 import React, { useEffect, useState } from "react";
-import "./Pets.css";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import PetsSelect from "./PetsSelect";
-import PetCard from "./PetCard";
-import MoreButton from "./MoreButton";
+import "./MorePets.css";
 
-const Pets = () => {
+import PetsMenu from "../pets/PetsSelect";
+import PetCard from "../pets/PetCard";
+
+const MorePets = () => {
   const [cityData, setCityData] = useState([]);
   const [cityDataCode, setCityDataCode] = useState(6110000);
   const [petData, setPetData] = useState([]);
@@ -35,7 +29,7 @@ const Pets = () => {
     const params = {
       // bgnde: 20200101, // 시작일
       // endde: currentDate, // 마지막일
-      numOfRows: 10,
+      numOfRows: 50,
       pageNo: 1,
       // upkind: petKind, // 동물의 종류
       upr_cd: cityDataCode, // 시도코드
@@ -62,38 +56,26 @@ const Pets = () => {
   return (
     <div>
       <div>
-        <h1>시도별 유기동물 정보</h1>
-        <div className="container">
-          <div className="select_menus">
-            <PetsSelect
-              cityData={cityData}
-              setCityDataCode={setCityDataCode}
-              setPetKind={setPetKind}
-            />
-            <MoreButton />
-          </div>
-          {isLoading ? (
-            <div className="loading_container">로딩중...</div>
-          ) : (
-            <div className="pets_container">
-              <Swiper
-                // install Swiper modules
-                modules={[Navigation, Pagination, Scrollbar, A11y]}
-                slidesPerView={3}
-                // navigation
-              >
-                {petData.map((pet, index) => (
-                  <SwiperSlide key={index}>
-                    <PetCard pet={pet} />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          )}
+        <div className="select_container">
+          <h1>시도별 유기동물 정보</h1>
+          <PetsMenu
+            cityData={cityData}
+            setCityDataCode={setCityDataCode}
+            setPetKind={setPetKind}
+          />
         </div>
+        {isLoading ? (
+          <div className="more_loading_container">로딩중...</div>
+        ) : (
+          <div className="more_pets_container">
+            {petData.map((pet, index) => (
+              <PetCard pet={pet} key={index} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default Pets;
+export default MorePets;

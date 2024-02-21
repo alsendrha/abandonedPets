@@ -1,30 +1,70 @@
 .detail_container{
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.4rem;
+  align-items: flex-start;
+  flex-wrap: wrap
 }
 
 .detail_image{
-  width: 100%;
-}
-
-.image_container{
-  display: flex;
-  justify-content: center;
-}
-
-.detail_image_form{
   margin: 10px;
-  width: 200px;
-  height: 60px;
-  border: 1px solid gray;
+  object-fit: contain;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 60vh
 }
 
-.pet_detail_image_icon{
-  width: 40px;
+table{
+  margin-top: 10px;
+  margin-left: 10px;
+  
 }
-.pet_detail_image_icon_cet{
-  width: 80px;
+
+th{
+  text-align: start;
+    /* border: 1px solid black; */
+    width: 160px;
+}
+
+td{
+  text-align: start;
+  /* border: 1px solid black; */
+  width: 350px;
+}
+
+th, td{
+ font-size: 1.2rem;
+ line-height: 2.05rem;
+}
+
+.last_detail_info{
+  width: 100%;
+  margin: 20px 0 20px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 1140px) {
+  .detail_image {
+    width: 60%;
+    height: 100%;
+  }
+  .detail_info_form{
+    width: 60%;
+  }
+  th,
+  td {
+    font-size: 1rem;
+    line-height: 1.7rem;
+  }
+  td {
+    text-align: start;
+    /* border: 1px solid black; */
+    width: 200px;
+  }
+
+    .last_detail_info {
+      width: 75%;
+      font-size: 1rem;
+    }
 }

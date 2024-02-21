@@ -1,4 +1,4 @@
-.loading_container{
+.more_loading_container {
   border: 1px solid grey;
   border-radius: 8px;
   background-color: white;
@@ -9,29 +9,35 @@
   justify-content: center;
 }
 
-.loading_container p {
+.more_loading_container p {
   display: block;
 }
 
-.container{
+.more_container {
   width: 550px;
   border: 1px solid grey;
   border-radius: 8px;
   padding: 0 5px 0 5px;
 }
 
-.select_menus{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.select_container{
+  width: 100%;
+  max-width: 88%;;
+  margin: 0 auto;
 }
 
-.pets_container{
-  width: 550px;
+.more_pets_container {
+  width: 100%;
   /* border: 1px solid grey; */
+  max-width: 88%;
+  margin: 0 auto;
   border-radius: 8px;
   display: flex;
-  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.select_menu {
+  padding: 10px 0 0 5px;
 }
 
 .swiper-slide {

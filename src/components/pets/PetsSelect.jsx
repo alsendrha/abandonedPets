@@ -1,6 +1,7 @@
 import React from "react";
 import "./PetsSelect.css";
-const PetsMenu = ({ cityData, setCityDataCode, setPetKind }) => {
+
+const PetsSelect = ({ cityData, setCityDataCode, setPetKind }) => {
   const petKindCode = [
     { name: "전체", code: "" },
     { name: "개", code: 417000 },
@@ -32,11 +33,8 @@ const PetsMenu = ({ cityData, setCityDataCode, setPetKind }) => {
           ))}
         </select>
       </div>
-      <div className="more_button" onClick={() => console.log("클릭")}>
-        <p>더보기 &gt;</p>
-      </div>
     </div>
   );
 };
 
-export default PetsMenu;
+export default PetsSelect;

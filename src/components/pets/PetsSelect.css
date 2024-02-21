@@ -12,16 +12,3 @@
   border-radius: 8px;
 }
 
-.more_button{
-  margin-right: 5px;
-  cursor: pointer;
-  color: gray;
-  opacity: 0.8;
-}
-
-.more_button:hover{
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  padding: 5px;
-  color: white;
-}

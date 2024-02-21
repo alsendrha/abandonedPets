@@ -1,0 +1,13 @@
+.more_button {
+  margin: 10px 20px 0 0;
+  cursor: pointer;
+  color: gray;
+  opacity: 0.8;
+}
+
+.more_button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  padding: 5px;
+  color: white;
+}
