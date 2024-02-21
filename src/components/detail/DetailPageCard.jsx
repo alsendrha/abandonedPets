@@ -4,31 +4,12 @@ import DetailPageCardIcon from "./DetailPageCardIcon";
 const DetailPageCard = ({ petDetailData }) => {
   return (
     <div className="detail_container">
-      <img className="detail_image" src={petDetailData.popfile} alt="이미지" />
+      <img className="detail_image" src={petDetailData.popfile !== undefined ? petDetailData.popfile : '/images/no_image.png'} alt="이미지" />
       <div className="detail_info_form">
         <DetailPageCardIcon petDetailData={petDetailData} />
         <table>
           <tbody>
-            <tr>
-              <th>관련기관</th>
-              <td>{petDetailData.careNm}</td>
-            </tr>
-            <tr>
-              <th>보호소 주소</th>
-              <td>{petDetailData.careAddr}</td>
-            </tr>
-            <tr>
-              <th>보호소 연락처</th>
-              <td>{petDetailData.careTel}</td>
-            </tr>
-            <tr>
-              <th>발견 날짜</th>
-              <td>{petDetailData.happenDt}</td>
-            </tr>
-            <tr>
-              <th>발견 장소</th>
-              <td>{petDetailData.happenPlace}</td>
-            </tr>
+
             <tr>
               <th>종류</th>
               <td>{petDetailData.kindCd}</td>
@@ -50,6 +31,10 @@ const DetailPageCard = ({ petDetailData }) => {
               <td>{petDetailData.neuterYn}</td>
             </tr>
             <tr>
+              <th>발견 장소</th>
+              <td>{petDetailData.happenPlace}</td>
+            </tr>
+            <tr>
               <th>현재 상태</th>
               <td>{petDetailData.processState}</td>
             </tr>
@@ -61,6 +46,23 @@ const DetailPageCard = ({ petDetailData }) => {
               <th>공고 종료일</th>
               <td>{petDetailData.noticeEdt}</td>
             </tr>
+            <tr>
+              <th>관련기관</th>
+              <td>{petDetailData.careNm}</td>
+            </tr>
+            <tr>
+              <th>보호소 주소</th>
+              <td>{petDetailData.careAddr}</td>
+            </tr>
+            <tr>
+              <th>보호소 연락처</th>
+              <td>{petDetailData.careTel}</td>
+            </tr>
+            <tr>
+              <th>발견 날짜</th>
+              <td>{petDetailData.happenDt}</td>
+            </tr>
+
             {/* <tr>
               <th>특이사항</th>
               <td>{petDetailData.specialMark}</td>

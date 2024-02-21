@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./App.css";
 import MainPage from "./pages/MainPage";
 import DetailPage from "./pages/DetailPage";
