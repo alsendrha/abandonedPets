@@ -12,6 +12,7 @@ const MorePets = () => {
   const [petData, setPetData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [petKind, setPetKind] = useState("");
+  const [page, setPage] = useState(1);
 
   const getCityData = async () => {
     const response = await axios.get("", {
@@ -30,7 +31,7 @@ const MorePets = () => {
       // bgnde: 20200101, // 시작일
       // endde: currentDate, // 마지막일
       numOfRows: 50,
-      pageNo: 1,
+      pageNo: page,
       // upkind: petKind, // 동물의 종류
       upr_cd: cityDataCode, // 시도코드
     };
@@ -73,6 +74,7 @@ const MorePets = () => {
             ))}
           </div>
         )}
+        <div id="infinity" style={{ height: "10px" }}></div>
       </div>
     </div>
   );
