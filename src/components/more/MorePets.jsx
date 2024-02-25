@@ -4,7 +4,7 @@ import petAxios from "../../api/PetApi";
 import "./MorePets.css";
 
 import PetCard from "../pets/PetCard";
-import PetsMenu from "../pets/PetsSelect";
+import PetsSelect from "../pets/PetsSelect";
 
 const MorePets = () => {
   const [cityData, setCityData] = useState([]);
@@ -37,12 +37,11 @@ const MorePets = () => {
     petKind === "417000"
       ? "개"
       : petKind === "422400"
-      ? "고양이"
-      : petKind === "429900"
-      ? "기타"
-      : "전체"
+        ? "고양이"
+        : petKind === "429900"
+          ? "기타"
+          : "전체"
   );
-  console.log("시도코드", cityDataCode);
 
   const getPetData = async () => {
     setIsLoading(true);
@@ -53,16 +52,16 @@ const MorePets = () => {
       numOfRows: 50,
       pageNo: page,
       upr_cd: cityDataCode, // 시도코드
+      upkind: petKind,
     };
     console.log("펫함수 1번");
-    if (petKind) {
-      params.upkind = petKind;
-    }
     const response = await petAxios.get("", {
       params,
     });
     console.log("펫함수 2번");
-    if (!response.data.response.body.items.item) {
+    console.log('과연 비어있나요?!', response.data.response.body);
+    if (!response.data.response.body.items.item
+      || response.data.response.body.items.item.length === 0) {
       setHashMore(false);
       console.log("펫함수 3번");
     } else {
@@ -72,7 +71,6 @@ const MorePets = () => {
         ...response.data.response.body.items.item,
       ]);
       setPage((prev) => prev + 1);
-      console.log(response.data.response.body.items.item);
       setIsLoading(false);
     }
   };
@@ -80,13 +78,6 @@ const MorePets = () => {
   useEffect(() => {
     getCityData();
   }, []);
-
-  useEffect(() => {
-    setPage(1); // 페이지를 초기화
-    setPetData([]); // 펫 데이터 초기화
-    setHashMore(true); // hashMore 상태 초기화
-    getPetData(); // 새로운 펫 데이터 불러오기
-  }, [petKind, cityDataCode]);
 
   useEffect(() => {
     const interceptor = new IntersectionObserver(interception);
@@ -98,12 +89,19 @@ const MorePets = () => {
     };
   }, [page, petData, petKind, cityDataCode]);
 
+  useEffect(() => {
+    setPage(1); // 페이지를 초기화
+    setPetData([]); // 펫 데이터 초기화
+    setHashMore(true); // hashMore 상태 초기화
+    getPetData(); // 새로운 펫 데이터 불러오기
+  }, [petKind, cityDataCode]);
+
   return (
     <div>
       <div>
         <div className="select_container">
           <h1>시도별 유기동물 정보</h1>
-          <PetsMenu
+          <PetsSelect
             cityData={cityData}
             setCityDataCode={setCityDataCode}
             setPetKind={setPetKind}

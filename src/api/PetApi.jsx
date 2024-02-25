@@ -6,7 +6,6 @@ const request = axios.create({
   params: {
     serviceKey:
       "D6HvbqfFj6otDTGY3883h0C51xIplWlMUXEF+l5ZX9DTpTTNODdcI/6StO1BbYtjTAtOOKyj25hhnMVj4ASszw==",
-
     _type: "json",
   },
 });
