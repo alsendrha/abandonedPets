@@ -40,9 +40,16 @@ const Pets = ({ id }) => {
     const response = await petAxios.get("", {
       params,
     });
-    setPetData(response.data.response.body.items.item);
-    console.log(response.data.response.body.items.item);
-    setIsLoading(false);
+    if (
+      !response.data.response.body.items ||
+      response.data.response.body.items === 0
+    )
+      return alert("해당 지역에는 유기동물 정보가 없습니다.");
+    else {
+      setPetData(response.data.response.body.items.item);
+      console.log(response.data.response.body.items.item);
+      setIsLoading(false);
+    }
   };
   useEffect(() => {
     getCityData();
@@ -52,7 +59,7 @@ const Pets = ({ id }) => {
     getPetData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cityDataCode, petCode.petsCode]);
-
+  if (!petData) return <div>로딩중...</div>;
   return (
     <div>
       <div>

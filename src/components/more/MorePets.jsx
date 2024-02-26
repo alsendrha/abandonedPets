@@ -83,7 +83,7 @@ const MorePets = () => {
       interceptor.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page, petData, petCode.petsCode, cityDataCode]);
+  }, [page, petData]);
 
   useEffect(() => {
     setPage(1); // 페이지를 초기화
@@ -91,7 +91,7 @@ const MorePets = () => {
     setHashMore(true); // hashMore 상태 초기화
     getPetData(); // 새로운 펫 데이터 불러오기
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [petCode.petsCode, cityDataCode]);
+  }, [cityDataCode]);
 
   return (
     <div>
