@@ -1,24 +1,24 @@
-import axios from "../../api/CityApi";
-import petAxios from "../../api/PetApi";
-import React, { useEffect, useState } from "react";
-import "./Pets.css";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React, { useContext, useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import PetsSelect from "./PetsSelect";
-import PetCard from "./PetCard";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import axios from "../../api/CityApi";
+import petAxios from "../../api/PetApi";
 import MoreButton from "./MoreButton";
+import PetCard from "./PetCard";
+import "./Pets.css";
+import PetsSelect from "./PetsSelect";
+import { PetsSelectContext } from "./PetsSelectContext";
 
-const Pets = () => {
+const Pets = ({ id }) => {
   const [cityData, setCityData] = useState([]);
   const [cityDataCode, setCityDataCode] = useState(6110000);
   const [petData, setPetData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [petKind, setPetKind] = useState("");
-
+  const petCode = useContext(PetsSelectContext);
   const getCityData = async () => {
     const response = await axios.get("", {
       params: {
@@ -30,19 +30,13 @@ const Pets = () => {
 
   const getPetData = async () => {
     setIsLoading(true);
-    //upkind: 개 : 417000, 고양이 : 422400, 기타 : 429900
-    // const currentDate = new Date().toISOString().slice(0, 10).replace(/-/g, "");
     const params = {
-      // bgnde: 20200101, // 시작일
-      // endde: currentDate, // 마지막일
       numOfRows: 10,
       pageNo: 1,
-      // upkind: petKind, // 동물의 종류
-      upr_cd: cityDataCode, // 시도코드
+      upkind: id === 1 ? 417000 : id === 2 ? 422400 : 429900,
+      upr_cd: cityDataCode,
     };
-    if (petKind) {
-      params.upkind = petKind;
-    }
+
     const response = await petAxios.get("", {
       params,
     });
@@ -57,30 +51,26 @@ const Pets = () => {
   useEffect(() => {
     getPetData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cityDataCode, petKind]);
+  }, [cityDataCode, petCode.petsCode]);
 
   return (
     <div>
       <div>
-        <h1>시도별 유기동물 정보</h1>
+        <h1>{`시도별 유기동물 정보 (${
+          id === 1 ? "개" : id === 2 ? "고양이" : "기타"
+        })`}</h1>
         <div className="container">
           <div className="select_menus">
-            <PetsSelect
-              cityData={cityData}
-              setCityDataCode={setCityDataCode}
-              setPetKind={setPetKind}
-            />
-            <MoreButton />
+            <PetsSelect cityData={cityData} setCityDataCode={setCityDataCode} />
+            <MoreButton id={id} />
           </div>
           {isLoading ? (
             <div className="loading_container">로딩중...</div>
           ) : (
             <div className="pets_container">
               <Swiper
-                // install Swiper modules
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                 slidesPerView={3}
-                // navigation
               >
                 {petData.map((pet, index) => (
                   <SwiperSlide key={index}>
@@ -92,6 +82,7 @@ const Pets = () => {
           )}
         </div>
       </div>
+      <br />
     </div>
   );
 };
