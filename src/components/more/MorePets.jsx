@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "../../api/CityApi";
 import petAxios from "../../api/PetApi";
 import PetCard from "../pets/PetCard";
 import PetsSelect from "../pets/PetsSelect";
-import { PetsSelectContext } from "../pets/PetsSelectContext";
 import "./MorePets.css";
 
 const MorePets = () => {
@@ -12,11 +11,10 @@ const MorePets = () => {
   const [cityDataCode, setCityDataCode] = useState(6110000);
   const [petData, setPetData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // const [petKind, setPetKind] = useState("");
   const [page, setPage] = useState(1);
   const [hashMore, setHashMore] = useState(true);
   const divElement = useRef(null);
-  const petCode = useContext(PetsSelectContext);
+  // const petCode = useContext(PetsSelectContext);
   const petId = useParams();
 
   console.log("아이디 : ", petId.id === "1" ? "앙 기모띠" : "안녕하세요");
@@ -44,7 +42,6 @@ const MorePets = () => {
       numOfRows: 50,
       pageNo: page,
       upr_cd: cityDataCode,
-      // upkind: petCode.petsCode,
       upkind: petId.id === "1" ? 417000 : petId.id === "2" ? 422400 : 429900,
     };
     console.log("펫함수 1번");
