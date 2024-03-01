@@ -1,42 +1,51 @@
-.detail_container{
-  display: flex;
-  justify-content: center;
-  margin-top: 0.4rem;
-  align-items: flex-start;
-  flex-wrap: wrap
+.detail_container {
+  width: 100%;
+  background-color: #1A237E;
 }
 
-.detail_image{
+.detail_pet_card_container {
+  width: 40%;
+  margin: 0 auto;
+  padding-top: 5px;
+  background-color: #FFD54F;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* .detail_image {
   margin: 10px;
   object-fit: contain;
   border-radius: 8px;
   height: 60vh
-}
+} */
 
-table{
+/* 
+
+
+table {
   margin-top: 10px;
   margin-left: 10px;
-  
+
 }
 
-th{
+th {
   text-align: start;
-    /* border: 1px solid black; */
-    width: 160px;
+  width: 160px;
 }
 
-td{
+td {
   text-align: start;
-  /* border: 1px solid black; */
   width: 350px;
 }
 
-th, td{
- font-size: 1.2rem;
- line-height: 2.05rem;
+th,
+td {
+  font-size: 1.2rem;
+  line-height: 2.05rem;
 }
 
-.last_detail_info{
+.last_detail_info {
   width: 100%;
   margin: 20px 0 20px 0;
   text-align: center;
@@ -49,22 +58,24 @@ th, td{
     width: 60%;
     height: 100%;
   }
-  .detail_info_form{
+
+  .detail_info_form {
     width: 60%;
   }
+
   th,
   td {
     font-size: 1rem;
     line-height: 1.7rem;
   }
+
   td {
     text-align: start;
-    /* border: 1px solid black; */
     width: 200px;
   }
 
-    .last_detail_info {
-      width: 75%;
-      font-size: 1rem;
-    }
-}
+  .last_detail_info {
+    width: 75%;
+    font-size: 1rem;
+  }
+} */
